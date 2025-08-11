@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
   const [isLogin, setLogin] = useState(false);
-  const { handleSubmit, register, setValue } = useForm();
+  const { handleSubmit, register} = useForm();
   const navigate = useNavigate();
 
   const handleAuth = (authData) => {
