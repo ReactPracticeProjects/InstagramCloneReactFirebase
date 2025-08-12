@@ -2,12 +2,21 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, Field, Input, Box } from "@chakra-ui/react";
 import { PasswordInput } from "@/components/ui/password-input";
+import useLoginWithEmailAndPassoword from "@/hooks/useLoginWithEmailAndPassoword";
 
 const LoginForm = () => {
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm();
+  const [handleLogin, user, loginloading, loginerror] =
+    useLoginWithEmailAndPassoword();
+
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+    await handleLogin(email, password);
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-4">
           <Field.Root required>
             <Input

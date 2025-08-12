@@ -7,9 +7,13 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import useSignOutHandle from "@/hooks/useSignOutHandle";
+import { auth } from "@/firebase/firebaseConfig";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const SideBar = () => {
   const [handleSignOut, signoutLoading, signouterror] = useSignOutHandle();
+  const [user, loading, error] = useAuthState(auth);
+  
 
   return (
     <div className="!border-r-[1.8px] !border-r-gray-200 w-full  !px-4 md:!px-5   !py-4 md:!py-8">

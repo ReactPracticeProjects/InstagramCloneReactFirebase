@@ -1,6 +1,14 @@
 import { auth } from "@/firebase/firebaseConfig";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+
+  query,
+  where,
+  getDocs,
+  setDoc,
+  doc,
+} from "firebase/firestore";
 import { database } from "@/firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "@/store/authStore";
@@ -18,11 +26,10 @@ const useSignUpWithEmailAndPassword = () => {
       return;
     }
 
-    console.log(username);
     const userNameREf = collection(database, "users");
     const queryForUsernameCheck = query(
       userNameREf,
-      where("username", "==",  username )
+      where("username", "==", username)
     );
 
     const querySnapshot = await getDocs(queryForUsernameCheck);
@@ -51,8 +58,7 @@ const useSignUpWithEmailAndPassword = () => {
           createdAt: Date.now(),
         };
 
-        const userCollectionRef = collection(database, "users");
-        await addDoc(userCollectionRef, userDoc);
+        await setDoc(doc(database, "users", newUser.user.uid), userDoc);
 
         localStorage.setItem("user-info", JSON.stringify(userDoc));
         loginUser(userDoc);
