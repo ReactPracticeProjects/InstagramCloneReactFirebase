@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
+import GoogleAuth from "./GoogleAuth";
 
 const AuthForm = () => {
   const [isLogin, setLogin] = useState(true);
@@ -27,14 +28,7 @@ const AuthForm = () => {
           <Box h="1px" bg={"gray.400"} flex={2}></Box>
         </Flex>
 
-        <Box marginTop={4}>
-          <div className="flex items-center justify-center gap-2">
-            <img src="/google.png" className="w-[20px]" alt="" />
-            <button className="!text-blue-700 cursor-pointer">
-              Log in with google
-            </button>
-          </div>
-        </Box>
+        <GoogleAuth prefix={isLogin ? "Log In" : "Sign In"} />
       </Box>
 
       <Box borderWidth="1px" rounded="sm" width="full" padding={5}>
