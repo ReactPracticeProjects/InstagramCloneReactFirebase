@@ -1,30 +1,12 @@
-import {
-  Button,
-  VStack,
-  Field,
-  Input,
-  Box,
-  Center,
-  Text,
-  Flex,
-} from "@chakra-ui/react";
-import {
-  PasswordInput,
-  PasswordStrengthMeter,
-} from "@/components/ui/password-input";
+import { VStack, Box, Center, Text, Flex } from "@chakra-ui/react";
+
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+
+import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
 
 const AuthForm = () => {
-  const [isLogin, setLogin] = useState(false);
-  const { handleSubmit, register} = useForm();
-  const navigate = useNavigate();
-
-  const handleAuth = (authData) => {
-    console.log(authData);
-    navigate("/");
-  };
+  const [isLogin, setLogin] = useState(true);
 
   return (
     <VStack>
@@ -32,39 +14,7 @@ const AuthForm = () => {
         <div className="flex items-center justify-center">
           <img src="/logo.png" className="w-[60%]" alt="" />
         </div>
-        <form onSubmit={handleSubmit(handleAuth)}>
-          <div className="grid gap-4">
-            <Field.Root required>
-              <Input
-                {...register("email")}
-                type="email"
-                placeholder="Enter your email"
-              />
-            </Field.Root>
-
-            <Field.Root required>
-              <PasswordInput
-                {...register("password")}
-                placeholder="Enter your password"
-              />
-            </Field.Root>
-            {isLogin ? (
-              <Field.Root required>
-                <PasswordInput
-                  {...register("confirmPassword")}
-                  placeholder="Confirm password"
-                />
-              </Field.Root>
-            ) : (
-              ""
-            )}
-          </div>
-          <Box marginTop={4}>
-            <Button type="submit" colorPalette="blue" width={"full"}>
-              {isLogin ? "Sign Up" : "Log In"}
-            </Button>
-          </Box>
-        </form>
+        {isLogin ? <LoginForm /> : <SignUpForm />}
         <Flex
           justifyContent={"center"}
           alignItems={"center"}
@@ -91,22 +41,22 @@ const AuthForm = () => {
         <Center>
           {isLogin ? (
             <p>
-              Have an account ?{" "}
-              <button
-                className="cursor-pointer !text-blue-700 underline"
-                onClick={() => setLogin(!isLogin)}
-              >
-                Log In
-              </button>
-            </p>
-          ) : (
-            <p>
               Don't Have an Account?{" "}
               <button
                 className="cursor-pointer !text-blue-700 underline"
                 onClick={() => setLogin(!isLogin)}
               >
                 Sign Up
+              </button>
+            </p>
+          ) : (
+            <p>
+              Have an account ?{" "}
+              <button
+                className="cursor-pointer !text-blue-700 underline"
+                onClick={() => setLogin(!isLogin)}
+              >
+                Log In
               </button>
             </p>
           )}
