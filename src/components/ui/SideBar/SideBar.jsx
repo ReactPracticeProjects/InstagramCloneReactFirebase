@@ -1,10 +1,16 @@
 import React from "react";
 import SideIcon from "../SideIcon";
-import { IoHomeOutline } from "react-icons/io5";
-import { LogoutData, SideBarIconData } from "@/data/SideBarIconData";
+
+import {SideBarIconData } from "@/data/SideBarIconData";
 import { RiLogoutBoxLine } from "react-icons/ri";
 
+
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import useSignOutHandle from "@/hooks/useSignOutHandle";
+
 const SideBar = () => {
+  const [handleSignOut, signoutLoading, signouterror] = useSignOutHandle();
+
   return (
     <div className="!border-r-[1.8px] !border-r-gray-200 w-full  !px-4 md:!px-5   !py-4 md:!py-8">
       <div className="h-full flex flex-col items-center md:items-start">
@@ -27,12 +33,21 @@ const SideBar = () => {
           </div>
 
           <div>
-            <SideIcon
-              tooltipname={LogoutData.tooltipname}
-              path={LogoutData.path}
-              LinkIcon={LogoutData.LinkIcon}
-              linkContent={LogoutData.linkContent}
-            />
+            <button
+              onClick={handleSignOut}
+              className="flex gap-2 items-center !text-md cursor-pointer"
+            >
+              <span className="!text-2xl" id="LogOut">
+                {" "}
+                {<RiLogoutBoxLine />}
+              </span>{" "}
+              <span className="hidden md:flex">Log Out</span>
+            </button>
+            <ReactTooltip
+              className="block md:hidden"
+              anchorSelect={`#LogOut`}
+              content={`LogOut`}
+            ></ReactTooltip>
           </div>
         </div>
       </div>

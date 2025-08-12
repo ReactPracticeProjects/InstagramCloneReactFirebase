@@ -31,11 +31,3 @@ export const SideBarIconData = [
   },
 ];
 
-export const LogoutData = 
-  {
-    tooltipname: "LogOut",
-    path: "/auth",
-    LinkIcon: RiLogoutBoxLine,
-    linkContent: "Log Out",
-  }
-

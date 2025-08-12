@@ -2,9 +2,12 @@ import { auth } from "@/firebase/firebaseConfig";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { collection, addDoc } from "firebase/firestore"; 
 import { database } from "@/firebase/firebaseConfig";
-
+import { useNavigate } from "react-router-dom";
 
 const useSignUpWithEmailAndPassword = () => {
+  const navigate = useNavigate();
+  
+  
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
@@ -38,6 +41,7 @@ const useSignUpWithEmailAndPassword = () => {
         await addDoc(userCollectionRef,userDoc)
 
         localStorage.setItem("user-info",JSON.stringify(userDoc))
+        navigate("/")
 
       }
     } catch (error) {
