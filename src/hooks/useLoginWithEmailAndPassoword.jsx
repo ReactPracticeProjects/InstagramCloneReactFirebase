@@ -33,6 +33,7 @@ const useLoginWithEmailAndPassoword = () => {
         console.log("No such document!");
       }
       localStorage.setItem("user-info", JSON.stringify(docSnap.data()));
+      
 
       loginUser(docSnap.data());
       navigate("/");

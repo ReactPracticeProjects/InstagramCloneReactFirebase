@@ -22,7 +22,7 @@ const PageLayout = ({ children }) => {
 
       {/* Page Content Right */}
 
-      <div className="">{children}</div>
+      <div className="w-full">{children}</div>
     </div>
   );
 };

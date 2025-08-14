@@ -41,11 +41,11 @@ const SideBar = () => {
               onClick={handleSignOut}
               className="flex gap-2 items-center !text-md cursor-pointer"
             >
-              <span className="!text-2xl" id="LogOut">
+              <span className="!text-2xl !text-blue-500" id="LogOut">
                 {" "}
                 {<RiLogoutBoxLine />}
               </span>{" "}
-              <span className="hidden md:flex">Log Out</span>
+              <span className="hidden md:flex !text-blue-500">Log Out</span>
             </button>
             <ReactTooltip
               className="block md:hidden"
